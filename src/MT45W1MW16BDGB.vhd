@@ -12,7 +12,7 @@ entity MT45W1MW16BDGB is
 		-- lower byte enable, upper byte enable.
 		CLK, ADV, CRE, CE, OE, WE, LB, UB: in std_logic;
 		DQ: inout std_logic_vector(15 downto 0);
-		WAIT_ : out std_logic;
+		WAIT_p : out std_logic
 	);
 end MT45W1MW16BDGB;
 

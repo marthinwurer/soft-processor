@@ -1,0 +1,8 @@
+*.o
+/src/work/
+/src/ut_re_pulse
+*.o
+/src/work/
+/src/ut_re_pulse
+*.vcd
+/src/makefile
