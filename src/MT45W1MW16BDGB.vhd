@@ -18,8 +18,13 @@ end MT45W1MW16BDGB;
 
 architecture behav of MT45W1MW16BDGB is
 begin
-process (CLK, WE, OE, CE) is
+process (A, CLK, ADV, CRE, CE, OE, WE, LB, UB, DQ) is
+	subtype word : std_logic_vector(15 downto 0);
+	subtype memory : array(natural range <>) of word;
+	variable memory_cells: memory(2**20-1 downto 0);
 begin
+	
+
 end process;
 end behav;
 

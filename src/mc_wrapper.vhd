@@ -18,7 +18,7 @@ entity mc_wrapper is
 		-- switch data
 		inb: in std_logic_vector(7 downto 0);
 		-- raw button input
-		write_button, read_button, data_button: in std_logic;
+		write_button, read_button, data_button, display_button: in std_logic;
 		-- led output
 		outb: out std_logic_vector(7 downto 0);
 
@@ -91,7 +91,6 @@ begin
 	write(7 downto 0) <= data;
 
 	switch_addr <= inb;
-	outb <= read(7 downto 0);
 
 	process (clock, data_pressed) is
 	begin
@@ -99,6 +98,12 @@ begin
 			if data_pressed = '1' then
 				data <= inb;
 			end if;
+			if display_button = '1' then
+				outb <= data;
+			else
+				outb <= read(7 downto 0);
+			end if;
+
 		end if;
 	end process;
 				

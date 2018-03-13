@@ -37,8 +37,8 @@ type i_state is record
 	read_register: std_logic_vector(15 downto 0);
 end record;
 
-constant read_cycles: integer := 7;
-constant write_cycles: integer := 7;
+constant read_cycles: integer := 8;
+constant write_cycles: integer := 8;
 
 signal current_state, next_state: i_state;
 
