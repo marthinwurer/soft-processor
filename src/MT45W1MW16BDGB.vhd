@@ -73,5 +73,7 @@ begin
 				tLZWE_min=>10 ns)
 	port map(nCE=>CE, nOE=>OE, nWE=>WE, A=>A, D=>DQ);
 
+	WAIT_p <= 'Z';
+
 end behav;
 

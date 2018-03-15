@@ -1,0 +1,55 @@
+#!/bin/csh -f
+
+#      ____________________________________ 
+#     /                                    |
+#    |                                     |
+#    |      __________________   __________|
+#    |     |                 |   |
+#     \     \                |   |   _____________________________________________
+#      \     \               |   |
+#       \     \              |   |            
+#        \     \             |   |          
+#         \     \            |   |          
+#          \     \           |   |   
+#           \     \          |   |                         Device Name:  M45PE10
+#            \     \         |   |
+#             \     \        |   |            
+#              \     \       |   | 
+# ______________|     \      |   |           Copyright (c) 2004 STMicroelectronics
+#|                     |     |   |  
+#|                     |     |   |  ______________________________________________
+#|_____________________/     |___|
+
+# Example Script for lunch the simulation with cadence tool
+#
+#          Version   : 1.0
+#
+#            
+set codedir = ../code
+set stimdir = ../stim
+set workdir = ./work
+set hdldir = ./hdl.var
+set cdsdir = ./cds.lib
+
+\rm -rf work
+mkdir work
+
+# Code Compile
+ncvhdl  -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG -V93 $codedir/mem_util_pkg.vhd
+ncvhdl  -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG -V93  $codedir/Memory_Access.vhd
+ncvhdl  -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG -V93  $codedir/Internal_Logic.vhd
+ncvhdl  -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG -V93 $codedir/ACDC_check.vhd
+ncvhdl  -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG -V93 $codedir/M45PE10.vhd
+
+# Stim Compile
+ncvhdl -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG  $stimdir/Stimuli_SPI.vhd
+ncvhdl -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG  $stimdir/M45PE10_driver.vhd
+
+# Top Compile
+ncvhdl -cdslib $cdsdir -hdlvar $hdldir -WORK work -MESSAGES -NOCOPYRIGHT -LINEDEBUG  $stimdir/Benchtest.vhd
+
+# Elaborate
+ncelab -cdslib $cdsdir -hdlvar $hdldir -mess -NOWARN CUDEFB work.BENCHTEST:TEST -access +r -coverage
+
+# Simulate
+ncsim -cdslib $cdsdir -hdlvar $hdldir WORK.BENCHTEST -gui

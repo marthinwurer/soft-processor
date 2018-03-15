@@ -96,7 +96,7 @@
 USE std.textio.all;
 LIBRARY IEEE;
 USE IEEE.std_logic_1164.all;
-USE ieee.numeric_std.all;
+USE IEEE.std_logic_unsigned.all;
 USE IEEE.std_logic_textio.all;
 
 ENTITY sram IS

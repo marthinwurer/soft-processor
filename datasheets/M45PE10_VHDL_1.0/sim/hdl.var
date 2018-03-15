@@ -1,0 +1,9 @@
+include $CDS_INST_DIR/tools/inca/files/hdl.var
+
+#define WORK work
+define USE_NEW_SIMWAVE_WINDOW ON
+define CDS_TEXT_EDITOR /usr/dt/bin/dtpad
+define VIEW_MAP ($VIEW_MAP, .vs => shell)
+define VIEW_MAP ($VIEW_MAP, .v => v)
+define EDITOR vi
+define NCSIMRC ./waveform.com

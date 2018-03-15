@@ -39,14 +39,17 @@ architecture behav of mc_wrapper is
 		WAIT_p : in std_logic;
 
 
-		-- processor side 
+	-- processor side 
 		addr: in std_logic_vector(19 downto 0);
 		clock: in std_logic;
 		operation: in std_logic; -- if low, read; if high, write
 		enable: in std_logic; -- enable high
 		write: in std_logic_vector(15 downto 0);
 		read: out std_logic_vector(15 downto 0);
-		ready: out std_logic -- high if ready
+		ready: out std_logic; -- high if ready
+
+		-- debug
+		write_r: out std_logic_vector(15 downto 0)
 	);
 	end component;
 
@@ -71,7 +74,7 @@ architecture behav of mc_wrapper is
 
 
 begin
-	mc: entity work.memory_controller
+	mem_cont: entity work.memory_controller
 	port map (A=>A, CLK=>CLK, ADV=>ADV, CRE=>CRE, CE=>CE, OE=>OE, WE=>WE, LB=>LB, UB=>UB,
 				DQ=>Dq, WAIT_p=>WAIT_p, addr=>addr, clock=>clock, operation=>operation,
 				enable=>enable, write=>write, read=>read, ready=>ready);
@@ -91,6 +94,7 @@ begin
 	write(7 downto 0) <= data;
 
 	switch_addr <= inb;
+
 
 	process (clock, data_pressed) is
 	begin

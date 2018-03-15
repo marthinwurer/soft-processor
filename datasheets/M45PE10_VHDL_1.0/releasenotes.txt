@@ -1,0 +1,58 @@
+ M45PE10 SERIAL FLAH MEMORY VHDL MODEL - Release notes
+
+ ******************************************************************************
+
+  Version History
+
+  Version 1.0
+  Date    : 03/08/2004
+
+
+  Author :  Xue-Feng Hu
+            e-mail : xue-feng.hu@st.com
+
+
+ ******************************************************************************
+
+    THIS PROGRAM IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND,
+    EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO, THE
+    IMPLIED WARRANTY OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+    PURPOSE. THE ENTIRE RISK AS TO THE QUALITY AND PERFORMANCE OF
+    THE PROGRAM IS WITH YOU. SHOULD THE PROGRAM PROVE DEFECTIVE, YOU
+    ASSUME THE COST OF ALL NECESSARY SERVICING, REPAIR OR CORRECTION.
+
+
+  M45PE10_VHDL_1.0.zip file contains:
+
+  Code Files:
+
+        code/mem_util_pkg.vhd
+        code/Memory_Access.vhd
+        code/Internal_Logic.vhd
+        code/ACDC_check.vhd
+        code/M45PE10.vhd                   VHDL model of M45PE10 device
+
+  Simulation Files:
+
+        sim/init.txt                      An example of the memory initialization file
+        sin/run_ncsim                     Cadence NCSIM compilation script containing compilation order
+
+  Stimuli File:                           Stimuli Example for  M45PE10 device
+
+        stim/Stimuli_SPI.vhd              Stimuli Example for M45PE10 device
+        stim/M45PE10_driver.vhd 
+        stim/Benchtest.vhd                TestBench for M45PE10 device 
+
+  Documentation:
+        doc/M45_User_Manual.pdf           Model Application Note
+
+
+ TECHNICAL SUPPORT
+ 
+ For current information on M45Pxx products, please consult our pages on the world wide web:
+ www.st.com/eeprom
+ 
+ If you have any questions or suggestions concerning the matters raised in this document, please send
+ them to the following electronic mail addresses:
+           apps.eeprom@st.com (for application support)
+           ask.memory@st.com (for general enquiries)
