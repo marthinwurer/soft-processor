@@ -60,15 +60,15 @@ begin
 			if enable = '1' then
 				n.address := addr;
 				n.duration := 0;
-				n.state := STABILIZING;
+				--n.state := STABILIZING;
 
 			-- if the operation is high, then change state to write
 				if operation = '1' then 
-					n.nstate := WRITING;
+					n.state := WRITING;
 					n.write_register := write;
 				else
 					-- by default read
-					n.nstate := READING;
+					n.state := READING;
 				end if;
 			end if;
 		elsif n.state = STABILIZING then 
