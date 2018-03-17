@@ -30,7 +30,7 @@ ARCHITECTURE behav of ut_mc IS
 		clock: in std_logic
 );
 	end component;
-	component MT45W1MW16BDGB
+	component sdram_basic
 	port (
 		A: in std_logic_vector(19 downto 0);
 		-- clock, address valid, chip enable, output enable, write enable, 
@@ -56,7 +56,7 @@ begin
 				WAIT_p=>wait_p, inb=>inb, write_button=>wb, read_button=>rb, 
 				data_button=>db, display_button=>dispb, outb=>outb, clock=>clock);
 
-	chip: entity work.MT45W1MW16BDGB
+	chip: entity work.sdram_basic
 	port map (A=>a, CLK=>clk, ADV=>adv, CRE=>cre, CE=>ce, OE=>oe, WE=>we, LB=>lb, UB=>lb, DQ=>dq,
 				WAIT_p=>wait_p);
 
