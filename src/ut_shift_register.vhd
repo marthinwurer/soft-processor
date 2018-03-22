@@ -12,19 +12,20 @@ ARCHITECTURE behav of ut_shift_register IS
 	component shift_register
 	generic (n: integer);
 	port (
-		enable, clk, input, reset: in std_logic;
+		enable, clk, input, reset, load: in std_logic;
+		load_data: in std_logic_vector(n-1 downto 0);
 		data: out std_logic_vector(n-1 downto 0);
 		last: out std_logic
 	);
 	end component;
-	signal enable, input, reset, last, clk: std_logic; 
-	signal data: std_logic_vector(7 downto 0);
+	signal enable, input, reset, last, load, clk: std_logic; 
+	signal data, load_data: std_logic_vector(7 downto 0);
 begin
 	sr: entity work.shift_register
 	generic map(n=>8)
 	port map(
-		enable=>enable, clk=>clk, input=>input, reset=>reset, 
-		data=>data, last=>last);
+		enable=>enable, clk=>clk, input=>input, reset=>reset, load=>load, 
+		load_data=>load_data, data=>data, last=>last);
 
 	process is 
 		type io_record is record 
@@ -53,6 +54,18 @@ begin
 			('1','0','0','0',"10111010"));
 
 	begin
+		reset <= '0';
+		load <= '1';
+		load_data <= "11111111";
+		clk <= '0';
+		wait for 50 ns;
+		
+		reset <= '0';
+		clk <= '1';
+		wait for 50 ns;
+		assert data = "11111111" report "ERROR: load didn't work";
+		load <= '0';
+
 		reset <= '1';
 		clk <= '0';
 		wait for 50 ns;
